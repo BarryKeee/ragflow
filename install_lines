@@ -1,1 +1,2 @@
 FOR /F %k in (requirements.txt) DO pip install %k
+cat requirements.txt | xargs -n 1 pip install
