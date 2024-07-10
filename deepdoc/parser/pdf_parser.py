@@ -272,7 +272,7 @@ class RAGFlowPdfParser:
                 b["H_right"] = spans[ii]["x1"]
                 b["SP"] = ii
 
-    def __ocr(self, pagenum, img, chars, ZM=3):
+    def _ocr(self, pagenum, img, chars, ZM=3):
         bxs = self.ocr.detect(np.array(img))
         if not bxs:
             self.boxes.append([])
@@ -976,16 +976,16 @@ class RAGFlowPdfParser:
         if not self.outlines:
             logging.warning(f"Miss outlines")
 
-        logging.info("Images converted.")
-        self.is_english = [re.search(r"[a-zA-Z0-9,/¸;:'\[\]\(\)!@#$%^&*\"?<>._-]{30,}", "".join(
-            random.choices([c["text"] for c in self.page_chars[i]], k=min(100, len(self.page_chars[i]))))) for i in
-                           range(len(self.page_chars))]
-        if sum([1 if e else 0 for e in self.is_english]) > len(
-                self.page_images) / 2:
-            self.is_english = True
-        else:
-            self.is_english = False
-        self.is_english = False
+        logging.warning("Images converted.")
+        # self.is_english = [re.search(r"[a-zA-Z0-9,/¸;:'\[\]\(\)!@#$%^&*\"?<>._-]{30,}", "".join(
+        #     random.choices([c["text"] for c in self.page_chars[i]], k=min(100, len(self.page_chars[i]))))) for i in
+        #                    range(len(self.page_chars))]
+        # if sum([1 if e else 0 for e in self.is_english]) > len(
+        #         self.page_images) / 2:
+        #     self.is_english = True
+        # else:
+        #     self.is_english = False
+        self.is_english = True
 
         st = timer()
         for i, img in enumerate(self.page_images):
@@ -1006,7 +1006,7 @@ class RAGFlowPdfParser:
                     chars[j]["text"] += " "
                 j += 1
 
-            self.__ocr(i + 1, img, chars, zoomin)
+            self._ocr(i + 1, img, chars, zoomin)
             if callback and i % 6 == 5:
                 callback(prog=(i + 1) * 0.6 / len(self.page_images), msg="")
         # print("OCR:", timer()-st)

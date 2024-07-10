@@ -126,9 +126,9 @@ class Pdf(PdfParser):
         self._text_merge()
         callback(0.67, "Text merging finished")
         tbls = self._extract_table_figure(True, zoomin, True, True)
-        #self._naive_vertical_merge()
+        self._naive_vertical_merge()
         self._concat_downward()
-        #self._filter_forpages()
+        self._filter_forpages()
 
         cron_logger.info("layouts: {}".format(timer() - start))
         return [(b["text"], self._line_tag(b, zoomin))
@@ -278,6 +278,7 @@ if __name__ == "__main__":
     import sys
 
     def dummy(prog=None, msg=""):
+        print(msg)
         pass
 
     chunk(sys.argv[1], from_page=0, to_page=10, callback=dummy)
