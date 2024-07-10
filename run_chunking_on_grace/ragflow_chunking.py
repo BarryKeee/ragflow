@@ -17,7 +17,7 @@ from rag.app.naive import chunk
 
 
 def dummy(prog=None, msg=""):
-    print(msg)
+    # print(msg)
     pass
 
 
