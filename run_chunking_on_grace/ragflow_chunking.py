@@ -24,8 +24,6 @@ if __name__ == '__main__':
     pdf_folder_name = str(sys.argv[1])
     parid = int(sys.argv[2])
     partition_run_folder = os.path.join(BASE_FOLDER, pdf_folder_name + '_partition')
-    wait_time = 180
-    delete = False
 
     partition_run = pickle.load(open(os.path.join(partition_run_folder, f'parid_{parid}'), 'rb'))
 

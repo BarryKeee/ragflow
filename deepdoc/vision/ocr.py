@@ -68,17 +68,17 @@ def load_model(model_dir, nm):
     options = ort.SessionOptions()
     options.enable_cpu_mem_arena = False
     options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
-    options.intra_op_num_threads = 2
-    options.inter_op_num_threads = 2
+    options.intra_op_num_threads = 4
+    options.inter_op_num_threads = 4
     if False and ort.get_device() == "GPU":
         sess = ort.InferenceSession(
             model_file_path,
-            options=options,
+            sess_options=options,
             providers=['CUDAExecutionProvider'])
     else:
         sess = ort.InferenceSession(
             model_file_path,
-            options=options,
+            sess_options=options,
             providers=['CPUExecutionProvider'])
     return sess, sess.get_inputs()[0]
 
