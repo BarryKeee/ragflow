@@ -16,7 +16,7 @@ from rag.app.naive import chunk
 
 
 def dummy(prog=None, msg=""):
-    # print(msg)
+    print(msg)
     pass
 
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     os.makedirs(ragflow_parsed_chunk_folder_text_table, exist_ok=True)
 
     for i, (folder_name, pdf_path) in enumerate(partition_run):
-        start = timeit.default_timer()
+
 
         ragflow_parsed_chunk_folder_text_quarter = os.path.join(ragflow_parsed_chunk_folder_text, folder_name)
         os.makedirs(ragflow_parsed_chunk_folder_text_quarter, exist_ok=True)
@@ -46,10 +46,12 @@ if __name__ == '__main__':
         if os.path.exists(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0])):
             continue
 
+        start = timeit.default_timer()
         res = chunk(filename=os.path.join(BASE_FOLDER, pdf_folder_name, folder_name, pdf_path),
                     callback=dummy, lang='English')
         res_content_with_table = [x['content_with_weight'] for x in res]
         res_content = [x['content_with_weight'] for x in res if '<table>' not in x['content_with_weight']]
+        end = timeit.default_timer()
 
         # save
         pickle.dump(res_content_with_table, open(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0]), 'wb'))
