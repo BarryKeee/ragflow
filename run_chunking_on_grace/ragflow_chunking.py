@@ -51,9 +51,9 @@ if __name__ == '__main__':
         try:
             res = chunk(filename=os.path.join(BASE_FOLDER, pdf_folder_name, folder_name, pdf_path),
                         callback=dummy, lang='English')
-        except AssertionError as e:
+        except Exception as e:
             logging.error(str(e))
-            logging.info(f'Error: Filename {folder_name}-{pdf_path}. Total time {end - start}.')
+            logging.info(f'Error: Filename {folder_name}-{pdf_path}.')
             continue
         res_content_with_table = [x['content_with_weight'] for x in res]
         res_content = [x['content_with_weight'] for x in res if '<table>' not in x['content_with_weight']]
