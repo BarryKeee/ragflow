@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 import timeit
@@ -47,17 +48,19 @@ if __name__ == '__main__':
             continue
 
         start = timeit.default_timer()
-        res = chunk(filename=os.path.join(BASE_FOLDER, pdf_folder_name, folder_name, pdf_path),
-                    callback=dummy, lang='English')
+        try:
+            res = chunk(filename=os.path.join(BASE_FOLDER, pdf_folder_name, folder_name, pdf_path),
+                        callback=dummy, lang='English')
+        except AssertionError as e:
+            logging.error(str(e))
+            logging.info(f'Error: Filename {folder_name}-{pdf_path}. Total time {end - start}.')
+            continue
         res_content_with_table = [x['content_with_weight'] for x in res]
         res_content = [x['content_with_weight'] for x in res if '<table>' not in x['content_with_weight']]
-        end = timeit.default_timer()
-
         # save
         pickle.dump(res_content_with_table, open(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0]), 'wb'))
         pickle.dump(res_content, open(os.path.join(ragflow_parsed_chunk_folder_text_quarter, pdf_path.split('.pdf')[0]), 'wb'))
 
         end = timeit.default_timer()
         if i % 10 == 0:
-            print(
-                f'Finished {i} out of {len(partition_run)}. Filename {folder_name}-{pdf_path}. Total time {end - start}. Total num of chunks: {len(res_content_with_table)}. Total number of nontable_chunks: {len(res_content)}. ')
+            logging.info(f'Finished {i} out of {len(partition_run)}. Filename {folder_name}-{pdf_path}. Total time {end - start}. Total num of chunks: {len(res_content_with_table)}. Total number of nontable_chunks: {len(res_content)}.')
