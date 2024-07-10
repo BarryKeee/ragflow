@@ -1,0 +1,1 @@
+FOR /F %k in (requirements.txt) DO pip install %k
