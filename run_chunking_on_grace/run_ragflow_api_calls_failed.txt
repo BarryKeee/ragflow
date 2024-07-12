@@ -1,0 +1,9 @@
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 2351
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 2510
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 2451
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 2646
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 3602
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 3390
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 3375
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 3650
+module load miniconda; conda activate ragflow; python ragflow_chunking.py ticker_amaskcd_matched_pdfs_save 2780
