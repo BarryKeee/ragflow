@@ -62,4 +62,4 @@ if __name__ == '__main__':
 
         end = timeit.default_timer()
         if i % 10 == 0:
-            logging.info(f'Finished {i} out of {len(partition_run)}. Filename {folder_name}-{pdf_path}. Total time {end - start}. Total num of chunks: {len(res_content_with_table)}. Total number of nontable_chunks: {len(res_content)}.')
+            logging.info(f'Finished {i} out of {len(partition_run)}. Filename {folder_name}-{pdf_path}. Total time {end - start}. Total number of nontable_chunks: {len(res_content)}.')
