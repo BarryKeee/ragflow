@@ -39,12 +39,11 @@ if __name__ == '__main__':
 
     for i, (folder_name, pdf_path) in enumerate(partition_run):
 
-
         ragflow_parsed_chunk_folder_text_quarter = os.path.join(ragflow_parsed_chunk_folder_text, folder_name)
         os.makedirs(ragflow_parsed_chunk_folder_text_quarter, exist_ok=True)
-        ragflow_parsed_chunk_folder_text_table_quarter = os.path.join(ragflow_parsed_chunk_folder_text_table, folder_name)
-        os.makedirs(ragflow_parsed_chunk_folder_text_table_quarter, exist_ok=True)
-        if os.path.exists(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0])):
+        # ragflow_parsed_chunk_folder_text_table_quarter = os.path.join(ragflow_parsed_chunk_folder_text_table, folder_name)
+        # os.makedirs(ragflow_parsed_chunk_folder_text_table_quarter, exist_ok=True)
+        if os.path.exists(os.path.join(ragflow_parsed_chunk_folder_text_quarter, pdf_path.split('.pdf')[0])):
             continue
 
         start = timeit.default_timer()
@@ -55,10 +54,10 @@ if __name__ == '__main__':
             logging.error(str(e))
             logging.info(f'Error: Filename {folder_name}-{pdf_path}.')
             continue
-        res_content_with_table = [x['content_with_weight'] for x in res]
+        # res_content_with_table = [x['content_with_weight'] for x in res]
         res_content = [x['content_with_weight'] for x in res if '<table>' not in x['content_with_weight']]
         # save
-        pickle.dump(res_content_with_table, open(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0]), 'wb'))
+        # pickle.dump(res_content_with_table, open(os.path.join(ragflow_parsed_chunk_folder_text_table_quarter, pdf_path.split('.pdf')[0]), 'wb'))
         pickle.dump(res_content, open(os.path.join(ragflow_parsed_chunk_folder_text_quarter, pdf_path.split('.pdf')[0]), 'wb'))
 
         end = timeit.default_timer()
