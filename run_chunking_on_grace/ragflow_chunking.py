@@ -34,8 +34,6 @@ if __name__ == '__main__':
     os.makedirs(ragflow_parsed_chunk_folder_text_table, exist_ok=True)
     ragflow_parsed_chunk_folder_text = os.path.join(ragflow_parsed_chunk_folder_text, pdf_folder_name)
     os.makedirs(ragflow_parsed_chunk_folder_text, exist_ok=True)
-    ragflow_parsed_chunk_folder_text_table = os.path.join(ragflow_parsed_chunk_folder_text_table, pdf_folder_name)
-    os.makedirs(ragflow_parsed_chunk_folder_text_table, exist_ok=True)
 
     for i, (folder_name, pdf_path) in enumerate(partition_run):
 

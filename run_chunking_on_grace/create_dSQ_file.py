@@ -24,3 +24,16 @@ for parid_file in os.listdir(partition_run_folder):
     line = f"module load miniconda; conda activate ragflow; python ragflow_chunking.py " \
            f"{pdf_folder_name} {parid}\n"
     file1.writelines(line)
+
+# Run parsing for 1026
+file_name = f"run_ragflow_api_calls_1026.txt"
+pdf_folder_name = 'firefox_download'
+print('dsq --job-file ' + file_name + ' --cpus-per-task=4 --mem=180G --time=1-00:00:00 --output=JOBLOG_ragflow_parsing_1026/dsq-jobfile-%A_%a-%N.out -p scavenge')
+file1 = open(file_name, "w")
+for parid in range(2751):
+    # line = f"export HF_ENDPOINT=https://hf-mirror.com; export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK; " \
+    #        f"module load miniconda; conda activate ragflow; python ragflow_chunking.py " \
+    #        f"{pdf_folder_name} {parid}\n"
+    line = f"module load miniconda; conda activate ragflow; python ragflow_chunking.py " \
+           f"{pdf_folder_name} {parid}\n"
+    file1.writelines(line)
