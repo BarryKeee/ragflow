@@ -27,7 +27,7 @@ for parid_file in os.listdir(partition_run_folder):
 
 # Run parsing for 1026
 file_name = f"run_ragflow_api_calls_1026.txt"
-pdf_folder_name = 'firefox_download'
+pdf_folder_name = 'raw_metadata_10262024_pdfs'
 print('dsq --job-file ' + file_name + ' --cpus-per-task=4 --mem=180G --time=1-00:00:00 --output=JOBLOG_ragflow_parsing_1026/dsq-jobfile-%A_%a-%N.out -p scavenge')
 file1 = open(file_name, "w")
 for parid in range(2751):
