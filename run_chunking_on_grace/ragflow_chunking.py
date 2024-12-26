@@ -36,12 +36,13 @@ if __name__ == '__main__':
     os.makedirs(ragflow_parsed_chunk_folder_text, exist_ok=True)
 
     for i, (folder_name, pdf_path) in enumerate(partition_run):
-        print(f'Total files to parse: {len(partition_run)}')
+        print(f'Parsing {i+1} out of {len(partition_run)}')
         ragflow_parsed_chunk_folder_text_quarter = os.path.join(ragflow_parsed_chunk_folder_text, folder_name)
         os.makedirs(ragflow_parsed_chunk_folder_text_quarter, exist_ok=True)
         # ragflow_parsed_chunk_folder_text_table_quarter = os.path.join(ragflow_parsed_chunk_folder_text_table, folder_name)
         # os.makedirs(ragflow_parsed_chunk_folder_text_table_quarter, exist_ok=True)
         if os.path.exists(os.path.join(ragflow_parsed_chunk_folder_text_quarter, pdf_path.split('.pdf')[0])):
+            print(f"{pdf_path.split('.pdf')[0]} already exist")
             continue
 
         start = timeit.default_timer()
